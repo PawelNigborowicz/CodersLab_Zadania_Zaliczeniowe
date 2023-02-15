@@ -17,6 +17,10 @@ public class AddingSecondAddressSteps {
     LogInPage loginPage;
 
     YourAccountPage yourAccountPage;
+
+    YourAddressesPage yourAddressesPage;
+
+    NewAddressPage newAddressPage;
     WebDriver driver;
 
     @Given("Im'm on the {string}")
@@ -50,5 +54,19 @@ public class AddingSecondAddressSteps {
     @Then("I land on the {string} page")
     public void iLandOnTheAdressesPage(String url) {
         Assertions.assertEquals(url, driver.getCurrentUrl());
+    }
+
+    @When("I click at the Create new address button")
+    public void iClickAtTheCreateNewAddressButton() {
+        yourAddressesPage = new YourAddressesPage(driver);
+        yourAddressesPage.clickCreateNewAddressButton();
+    }
+
+    @And("I enter new address {string}, {string}, {string}, {string}, {string}, {string}")
+    public void iEnterNewAddress(String alias, String address, String city,
+                                 String postalcode, String country, String phone) {
+        newAddressPage = new NewAddressPage(driver);
+        newAddressPage.fillOutTheAddressForm(alias, address, city, postalcode, country, phone);
+        newAddressPage.saveAddress();
     }
 }

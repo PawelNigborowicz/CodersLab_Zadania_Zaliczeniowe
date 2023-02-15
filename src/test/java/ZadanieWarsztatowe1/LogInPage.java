@@ -6,8 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class LogInPage {
-    private static WebDriver driver;
 
+    private static WebDriver driver;
     @FindBy(id = "field-email")
     private WebElement emailInput;
 
