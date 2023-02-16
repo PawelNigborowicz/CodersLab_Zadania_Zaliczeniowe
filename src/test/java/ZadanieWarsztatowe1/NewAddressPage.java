@@ -9,6 +9,15 @@ import org.openqa.selenium.support.ui.Select;
 public class NewAddressPage {
 
     private static WebDriver driver;
+
+    private String enteredAddress;
+
+    @FindBy(id="field-firstname")
+    private WebElement firstName;
+
+    @FindBy(id="field-lastname")
+    private WebElement lastName;
+
     @FindBy(id="field-alias")
     private WebElement aliasInput;
     @FindBy(id="field-address1")
@@ -53,9 +62,17 @@ public class NewAddressPage {
         phoneInput.clear();
         phoneInput.sendKeys(phone);
 
+        this.enteredAddress = alias + "\n" + firstName.getAttribute("value") + " "
+                + lastName.getAttribute("value")
+                + "\n" + address + "\n" + city + "\n" + postalcode
+                + "\n" + country + "\n" + phone;
     }
 
     public void saveAddress() {
         formSubmitButton.click();
+    }
+
+    public String getEnteredAddress() {
+        return this.enteredAddress;
     }
 }

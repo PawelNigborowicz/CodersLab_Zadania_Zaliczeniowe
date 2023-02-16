@@ -69,4 +69,30 @@ public class AddingSecondAddressSteps {
         newAddressPage.fillOutTheAddressForm(alias, address, city, postalcode, country, phone);
         newAddressPage.saveAddress();
     }
+
+    @Then("I can see new address")
+    public void iCanSeeNewAddress(){
+        Assertions.assertTrue(yourAddressesPage.isAddressVisible());
+    }
+
+    @And("I check if the new address contains {string}, {string}, {string}, {string}, {string} and {string}")
+    public void iCheckIfTheNewAddressIsCorrect(String alias, String address, String city,
+                                               String postalcode, String country, String phone) {
+        Assertions.assertEquals(newAddressPage.getEnteredAddress(), yourAddressesPage.getSavedAddress());
+    }
+
+    @And("I remove the address")
+    public void iRemoveTheAddress() {
+        yourAddressesPage.deleteAddress();
+    }
+
+    @And("I can see the address has been removed")
+    public void ICanSeeNoAddress(){
+        Assertions.assertTrue(yourAddressesPage.isAddressRemoved());
+    }
+
+    @And("I close the browser")
+    public void IcloseTheBrowser() {
+        driver.quit();
+    }
 }
