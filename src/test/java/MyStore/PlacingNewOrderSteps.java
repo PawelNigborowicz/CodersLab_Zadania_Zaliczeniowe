@@ -23,6 +23,12 @@ public class PlacingNewOrderSteps {
 
     ProductPage productPage;
 
+    ShoppingCartPage shoppingCartPage;
+
+    CheckoutPage checkoutPage;
+
+    OrderConfirmationPage orderConfirmationPage;
+
     WebDriver driver;
     @Given("I'm on the {string} page")
     public void imOnTheMyStore(String url) {
@@ -79,5 +85,43 @@ public class PlacingNewOrderSteps {
     @When(("I proceed to checkout"))
     public void iProceedToCheckout(){
         productPage.proceedToCheckout();
+
+        shoppingCartPage = new ShoppingCartPage(driver);
+        shoppingCartPage.proceedToCheckout();
+
+    }
+
+    @And("I confirm my address")
+    public void iConfirmMyAddress(){
+
+        checkoutPage = new CheckoutPage(driver);
+        checkoutPage.confirmAddress();
+
+    }
+
+    @And("I choose PrestaShop pick up in store delivery method")
+    public void iChoosePrestaShopDeliveryMethod(){
+        checkoutPage.chooseDeliveryMethod();
+    }
+
+    @And("I choose Pay by Check payment method")
+    public void iChoosePayByCheckPaymentMethod(){
+        checkoutPage.choosePaymentMethod();
+    }
+
+    @And("I check the term of service checkbox")
+    public void iCheckTermsOfServiceCheckbox(){
+        checkoutPage.agreeTermsOfService();
+    }
+
+    @And("I place an order")
+    public void iPlaceAnOrder(){
+        checkoutPage.placeOrder();
+    }
+
+    @Then("I can see {string} message")
+    public void iCanSeeMsg(String msg){
+        orderConfirmationPage = new OrderConfirmationPage(driver);
+        Assertions.assertEquals(msg, orderConfirmationPage.getOrderConfirmationMessage());
     }
 }

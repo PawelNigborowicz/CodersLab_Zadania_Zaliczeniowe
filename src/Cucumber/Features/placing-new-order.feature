@@ -8,3 +8,11 @@ Scenario: Placing a new order for Hummingbird Printed Sweater
   And I see that Hummingbird Printed Sweater is 20% discounted
   Then I add 5 units of size "M" to my basket
   When I proceed to checkout
+  And I confirm my address
+  And I choose PrestaShop pick up in store delivery method
+  And I choose Pay by Check payment method
+  And I check the term of service checkbox
+  And I place an order
+  Then I can see "YOUR ORDER IS CONFIRMED" message
+
+
