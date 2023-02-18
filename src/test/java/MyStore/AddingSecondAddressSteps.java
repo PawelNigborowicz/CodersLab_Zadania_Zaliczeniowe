@@ -1,4 +1,4 @@
-package ZadanieWarsztatowe1;
+package MyStore;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -23,7 +23,7 @@ public class AddingSecondAddressSteps {
     NewAddressPage newAddressPage;
     WebDriver driver;
 
-    @Given("Im'm on the {string}")
+    @Given("I'm on the {string}")
     public void imOnTheMyStore(String url) {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
 

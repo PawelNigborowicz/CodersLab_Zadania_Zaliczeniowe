@@ -6,5 +6,5 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(features = "src/Cucumber/Features", plugin = {"pretty", "html:out"})
-public class AddingSecondAddressTest {
+public class MyStoreTest {
 }
