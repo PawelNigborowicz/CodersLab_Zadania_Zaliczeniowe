@@ -17,6 +17,9 @@ public class ProductPage {
     @FindBy(css = ".bootstrap-touchspin-up")
     private WebElement increaseQtyBtn;
 
+    @FindBy(css = ".add-to-cart")
+    private WebElement addToCartBtn;
+
     public ProductPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -41,6 +44,10 @@ public class ProductPage {
         for(int i = 1; i < qty; i++) {
             increaseQtyBtn.click();
         }
+    }
+
+    public void addToCart(){
+        addToCartBtn.click();
     }
 
 
