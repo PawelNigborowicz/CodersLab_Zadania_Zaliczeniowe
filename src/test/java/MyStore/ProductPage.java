@@ -14,6 +14,9 @@ public class ProductPage {
     @FindBy(xpath = "//select[@id='group_1']//option")
     private List<WebElement> sizeValues;
 
+    @FindBy(css = ".bootstrap-touchspin-up")
+    private WebElement increaseQtyBtn;
+
     public ProductPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -33,4 +36,12 @@ public class ProductPage {
             throw new NoSuchElementException();
         }
     }
+
+    public void chooseQuantity(int qty) {
+        for(int i = 1; i < qty; i++) {
+            increaseQtyBtn.click();
+        }
+    }
+
+
 }

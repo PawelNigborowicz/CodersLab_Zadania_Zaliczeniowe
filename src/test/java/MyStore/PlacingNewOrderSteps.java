@@ -58,17 +58,19 @@ public class PlacingNewOrderSteps {
         Assertions.assertEquals("-20%", productListPage.getHummingbirdDiscount());
     }
 
-    @Then("I add 5 units of size M to my basket")
-    public void iAdd5UnitsOfSizeMToMyBasket() {
+    @Then("I add {int} units of size {string} to my basket")
+    public void iAddItemsToMyBasket(int qty, String size) {
         productListPage.clickHummingbirdTitle();
 
         productPage = new ProductPage(driver);
 
         try {
-            productPage.chooseSize("Mm");
+            productPage.chooseSize(size);
         } catch (NoSuchElementException e) {
             Assertions.fail();
         }
+
+        productPage.chooseQuantity(qty);
 
     }
 }
