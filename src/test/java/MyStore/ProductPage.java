@@ -20,6 +20,9 @@ public class ProductPage {
     @FindBy(css = ".add-to-cart")
     private WebElement addToCartBtn;
 
+    @FindBy(xpath = "//div[@class='cart-content-btn']//a")
+    private WebElement proceedToCheckoutBtn;
+
     public ProductPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -48,6 +51,10 @@ public class ProductPage {
 
     public void addToCart(){
         addToCartBtn.click();
+    }
+
+    public void proceedToCheckout(){
+        proceedToCheckoutBtn.click();
     }
 
 

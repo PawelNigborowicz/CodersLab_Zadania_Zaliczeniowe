@@ -75,4 +75,9 @@ public class PlacingNewOrderSteps {
         productPage.addToCart();
 
     }
+
+    @When(("I proceed to checkout"))
+    public void iProceedToCheckout(){
+        productPage.proceedToCheckout();
+    }
 }
