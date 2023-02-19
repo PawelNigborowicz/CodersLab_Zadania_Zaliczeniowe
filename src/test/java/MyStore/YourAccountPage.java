@@ -12,6 +12,9 @@ public class YourAccountPage {
     @FindBy(id = "addresses-link")
     private WebElement addressesIcon;
 
+    @FindBy(id = "history-link")
+    private WebElement orderHistoryIcon;
+
     @FindBy(xpath = "//li[@id='category-3']//a")
     private WebElement clothesCategoryLink;
 
@@ -23,10 +26,12 @@ public class YourAccountPage {
     public void clickAdressesIcon() {
         addressesIcon.click();
     }
-
+    public void clickOrderHistoryIcon() { orderHistoryIcon.click();}
     public void goToClothesPDP() {
         clothesCategoryLink.click();
     }
+
+
 }
 
 

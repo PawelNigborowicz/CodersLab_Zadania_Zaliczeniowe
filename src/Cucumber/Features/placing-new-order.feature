@@ -14,5 +14,10 @@ Scenario: Placing a new order for Hummingbird Printed Sweater
   And I check the term of service checkbox
   And I place an order
   Then I can see "YOUR ORDER IS CONFIRMED" message
+  And I make a screenshot of the order confirmation page
+  And I go to the Order history and details page
+  And I see that my order has "Awaiting check payment" status
+  And I see that my order's total price is the same as on the order confirmation page
+  And I close my browser
 
 

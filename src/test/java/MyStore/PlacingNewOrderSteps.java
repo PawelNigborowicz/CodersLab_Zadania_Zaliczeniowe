@@ -5,9 +5,14 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.io.FileHandler;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 import java.util.NoSuchElementException;
 
@@ -28,6 +33,10 @@ public class PlacingNewOrderSteps {
     CheckoutPage checkoutPage;
 
     OrderConfirmationPage orderConfirmationPage;
+
+    OrderHistoryPage orderHistoryPage;
+
+    String orderTotal;
 
     WebDriver driver;
     @Given("I'm on the {string} page")
@@ -122,6 +131,47 @@ public class PlacingNewOrderSteps {
     @Then("I can see {string} message")
     public void iCanSeeMsg(String msg){
         orderConfirmationPage = new OrderConfirmationPage(driver);
+        orderTotal = orderConfirmationPage.getOrderTotal(); // holding the value for the future step
         Assertions.assertEquals(msg, orderConfirmationPage.getOrderConfirmationMessage());
+    }
+
+    @And("I make a screenshot of the order confirmation page")
+    public void iMakeScreenShot(){
+
+        //Konwersja WebDriver do TakesScreenshot
+        TakesScreenshot scrShot = ((TakesScreenshot) driver);
+
+        //Wykonanie screenshotu i zapis do pliku
+        File scrFile = scrShot.getScreenshotAs(OutputType.FILE);
+
+        try{
+            FileHandler.copy(scrFile, new File("src/screenshot/screenshot.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @And("I go to the Order history and details page")
+    public void iGoToOrderHistory(){
+        orderConfirmationPage.goToMyAccount();
+        yourAccountPage.clickOrderHistoryIcon();
+    }
+
+    @And("I see that my order has {string} status")
+    public void iSeeMyOrderStatus(String status) {
+
+        orderHistoryPage = new OrderHistoryPage(driver);
+        Assertions.assertEquals(status, orderHistoryPage.getLastOrderStatus());
+    }
+
+    @And("I see that my order's total price is the same as on the order confirmation page")
+    public void iSeeThatMyOrdersTotalIsTheSameAsOnTheOrderConfirmationPage() {
+        Assertions.assertEquals(orderTotal, orderHistoryPage.getLastOrderPrice());
+    }
+
+    @And("I close my browser")
+    public void iCloseMyBrowser(){
+        driver.quit();
     }
 }
