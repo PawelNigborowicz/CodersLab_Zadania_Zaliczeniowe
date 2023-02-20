@@ -45,6 +45,11 @@ public class ProductPage {
 
     public void chooseQuantity(int qty) {
         for(int i = 1; i < qty; i++) {
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             increaseQtyBtn.click();
         }
     }
