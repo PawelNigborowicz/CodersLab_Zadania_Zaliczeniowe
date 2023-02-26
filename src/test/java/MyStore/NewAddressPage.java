@@ -20,17 +20,23 @@ public class NewAddressPage {
 
     @FindBy(id="field-alias")
     private WebElement aliasInput;
+
     @FindBy(id="field-address1")
     private WebElement addressInput;
+
     @FindBy(id="field-city")
     private WebElement cityInput;
+
     @FindBy(id="field-postcode")
     private WebElement postalCodeInput;
+
     @FindBy(id="field-phone")
     private WebElement phoneInput;
+
     @FindBy(id="field-id_country")
     private WebElement countrySelect;
-    @FindBy(xpath = "//footer//button")
+
+    @FindBy(xpath = "//footer[@class='form-footer clearfix']/button")
     private WebElement formSubmitButton;
 
 
@@ -56,12 +62,14 @@ public class NewAddressPage {
         postalCodeInput.clear();
         postalCodeInput.sendKeys(postalcode);
 
+        // Using Selenium Select class to pick the element from dropdown by its text(Country name in this case)
         Select dropdown = new Select(countrySelect);
         dropdown.selectByVisibleText(country);
 
         phoneInput.clear();
         phoneInput.sendKeys(phone);
 
+        // Placing the formatted address into the variable to compare it with the data in Your Addresses page
         this.enteredAddress = alias + "\n" + firstName.getAttribute("value") + " "
                 + lastName.getAttribute("value")
                 + "\n" + address + "\n" + city + "\n" + postalcode

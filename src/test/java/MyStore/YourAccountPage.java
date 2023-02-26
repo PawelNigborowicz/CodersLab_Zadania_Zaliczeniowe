@@ -26,7 +26,9 @@ public class YourAccountPage {
     public void clickAdressesIcon() {
         addressesIcon.click();
     }
+
     public void clickOrderHistoryIcon() { orderHistoryIcon.click();}
+
     public void goToClothesPDP() {
         clothesCategoryLink.click();
     }

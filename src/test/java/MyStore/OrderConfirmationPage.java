@@ -8,6 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 public class OrderConfirmationPage {
 
     private static WebDriver driver;
+
     @FindBy(xpath = "//div/h3[@class='h1 card-title']")
     private WebElement orderConfirmationMessage;
 

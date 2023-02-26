@@ -6,8 +6,10 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class MainPage {
+
     private static WebDriver driver;
-    @FindBy(css = ".user-info .hidden-sm-down")
+
+    @FindBy(xpath = "//div[@class='user-info']/a")
     private WebElement signInButton;
 
     public MainPage(WebDriver driver) {

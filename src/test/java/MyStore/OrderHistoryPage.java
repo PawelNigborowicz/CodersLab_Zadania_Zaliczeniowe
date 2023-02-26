@@ -10,6 +10,7 @@ import java.util.List;
 public class OrderHistoryPage {
 
     private static WebDriver driver;
+
     @FindBy(xpath = "//td[@class='text-xs-right']")
     private List<WebElement> prices;
 
@@ -20,6 +21,10 @@ public class OrderHistoryPage {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
+
+    //Methods below are getting the price and the order status from the
+    //prices and order statuses lists. The newest order is the first
+    //object on our list.
 
     public String getLastOrderPrice(){
         return prices.get(0).getText();

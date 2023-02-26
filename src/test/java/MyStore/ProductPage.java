@@ -11,6 +11,7 @@ import java.util.NoSuchElementException;
 public class ProductPage {
 
     private static WebDriver driver;
+
     @FindBy(xpath = "//select[@id='group_1']//option")
     private List<WebElement> sizeValues;
 
@@ -28,6 +29,9 @@ public class ProductPage {
         PageFactory.initElements(driver, this);
     }
 
+    //When the size value is entered into the method, the loop iterates through the elements in the list
+    //and if the value from the list is equal to the entered one, the element is being clicked.
+    //If no matching element found, method throws NoSuchElementException
     public void chooseSize(String size) {
 
         boolean found = false;
@@ -43,10 +47,17 @@ public class ProductPage {
         }
     }
 
+
+    //When qty value is entered into the method, the loop is being executed
+    // qty-1 times(Because 1 value is selected by default) and in every iteration
+    //the increase qty button is being clicked.
+    //The sleep method has been used to temporarily fix the issue with clicking
+    // the element too fast
+
     public void chooseQuantity(int qty) {
         for(int i = 1; i < qty; i++) {
             try {
-                Thread.sleep(5000);
+                Thread.sleep(3000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

@@ -8,6 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 public class CheckoutPage {
 
     private static WebDriver driver;
+
     @FindBy(name = "confirm-addresses")
     private WebElement confirmAddressBtn;
 
@@ -36,7 +37,11 @@ public class CheckoutPage {
     }
 
     public void chooseDeliveryMethod(){
-//        prestaShopDeliveryRadio.click(); - Selected by default
+
+        //Checking if delivery radio button is selected. If not, selecting it
+        if(!prestaShopDeliveryRadio.isSelected()) {
+            prestaShopDeliveryRadio.click();
+        }
         confirmDeliveryBtn.click();
     }
 

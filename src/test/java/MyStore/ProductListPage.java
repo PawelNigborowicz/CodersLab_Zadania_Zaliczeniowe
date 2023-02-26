@@ -8,6 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 public class ProductListPage {
 
     private static WebDriver driver;
+
     @FindBy(xpath = "//article[@data-id-product='2']//li[@class='product-flag discount']")
     private WebElement hummingbirdDiscount;
 
