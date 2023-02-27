@@ -39,6 +39,7 @@ public class PlacingNewOrderSteps {
     String orderTotal;
 
     WebDriver driver;
+
     @Given("I'm on the {string} page")
     public void imOnTheMyStore(String url) {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");

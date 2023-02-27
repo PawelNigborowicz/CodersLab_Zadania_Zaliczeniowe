@@ -21,6 +21,7 @@ public class AddingSecondAddressSteps {
     YourAddressesPage yourAddressesPage;
 
     NewAddressPage newAddressPage;
+
     WebDriver driver;
 
     @Given("I'm on the {string}")
@@ -75,9 +76,8 @@ public class AddingSecondAddressSteps {
         Assertions.assertTrue(yourAddressesPage.isAddressVisible());
     }
 
-    @And("I check if the new address contains {string}, {string}, {string}, {string}, {string} and {string}")
-    public void iCheckIfTheNewAddressIsCorrect(String alias, String address, String city,
-                                               String postalcode, String country, String phone) {
+    @And("I check if the new address contains previously entered data")
+    public void iCheckIfTheNewAddressIsCorrect() {
         Assertions.assertEquals(newAddressPage.getEnteredAddress(), yourAddressesPage.getSavedAddress());
     }
 

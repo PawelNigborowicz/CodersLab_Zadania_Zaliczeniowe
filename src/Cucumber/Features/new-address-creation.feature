@@ -9,7 +9,7 @@ Feature: Adding new address
     When I click at the Create new address button
     And I enter new address "<alias>", "<address>", "<city>", "<postalcode>", "<country>", "<phone>"
     Then I can see new address
-    And I check if the new address contains "alias", "address", "city", "postalcode", "country" and "phone"
+    And I check if the new address contains previously entered data
     And I remove the address
     And I can see the address has been removed
     And I close the browser
